@@ -1,11 +1,13 @@
 ;remove element
-(= (remove () $symbol) () )
+(= (remove () $symbol) ())
 (= (remove $list $symbol)(
-    if(== (car-atom $list) $symbol)(remove (cdr-atom $list) $symbol)
+    if(== (car-atom $list) $symbol)
+    (cdr-atom $list)
     ((car-atom $list)(remove (cdr-atom $list) $symbol))
 )
 )
-!(remove (a b c) b)
+!(remove (a b c f) f)
+
 
 ;append element
 (= (append $list1 $element) (
