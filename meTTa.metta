@@ -1,3 +1,10 @@
+
+;append element
+(= (append $list1 $element) (
+    if (== $list1 ()) 
+        $element 
+    ($list1 $element)
+))
 ;remove element
 (= (remove () $symbol) ())
 (= (remove $list $symbol)(
@@ -6,17 +13,23 @@
     ((car-atom $list)(remove (cdr-atom $list) $symbol))
 )
 )
-!(remove (a b c f) f)
-
-
-;append element
-(= (append $list1 $element) (
-    if (== $list1 ()) 
-        $element  ; If $list1 is empty, return $list2
-    ($list1 $element)
-))
-!(append (a b) (g))
 
 ;max-value
+(= (find-max ($x)) $x)
+
+
+(= (find-max $list)
+   (let (($head (car-atom $list))   
+         ($tail (cdr-atom $list)))  
+     (if (> $head (find-max $tail)) 
+         $head
+         (find-max $tail))))     
 
 ;min-value
+(= (find-min ($x)) $x)
+(= (find-min $list)
+   (let (($head (car-atom $list))   
+         ($tail (cdr-atom $list))) 
+     (if (< $head (find-min $tail))
+         $head
+        (find-min $tail))))   
